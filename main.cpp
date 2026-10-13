@@ -1,6 +1,6 @@
 /**
  * \file main.cpp
- * \brief Programme principal : scenario de test de CVoiture
+ * \brief Programme principal : scenario de test de CVoiture avec géolocalisation
  * \author Gaëtan Dallencourt
  */
 
@@ -11,17 +11,31 @@ using namespace std;
 
 int main()
 {
-    // Instanciation via le constructeur
-    CVoiture maVoiture("Peugeot", "208", 100, "Essence");
+    // Instanciation de deux véhicules
+    CVoiture voiture1("Peugeot", "208", 100, "Essence");
+    CVoiture voiture2("Renault", "Zoe", 135, "Electrique");
 
-    maVoiture.affiche();          // Etat initial
-    maVoiture.demarrer();
-    maVoiture.accelerer(50);
-    maVoiture.affiche();          // 50 km/h
-    maVoiture.ralentir(20);
-    maVoiture.affiche();          // 30 km/h
-    maVoiture.arreter();
-    maVoiture.affiche();          // Etat final : 0 km/h
+    cout << "--- ETAT INITIAL ---" << endl;
+    voiture1.affiche();
+    voiture2.affiche();
+
+    cout << "\n--- SCENARIO DE DEPLACEMENT ---" << endl;
+    
+    voiture1.demarrer();
+    voiture1.accelerer(50);
+    voiture1.deplacer(10.0, 5.0); // Déplacement de (10, 5) km
+    voiture1.affiche();
+
+    cout << endl;
+
+    voiture2.demarrer();
+    voiture2.accelerer(80);
+    voiture2.deplacer(3.0, 4.0); // Triangle 3-4-5 -> distance de 5 km
+    voiture2.afficherPosition();
+
+    cout << "\n--- DEPLACEMENT SUPPLEMENTAIRE ---" << endl;
+    voiture1.deplacer(-2.0, 3.0); // Test avec des valeurs négatives
+    voiture1.affiche();
 
     return 0;
 }

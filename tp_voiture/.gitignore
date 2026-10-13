@@ -1,0 +1,4 @@
+# Artefacts de compilation C++
+*.o
+application_voiture
+mon_programme
